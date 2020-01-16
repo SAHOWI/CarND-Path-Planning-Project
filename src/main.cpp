@@ -97,7 +97,16 @@ int main() {
            * TODO: define a path made up of (x,y) points that the car will visit
            *   sequentially every .02 seconds
            */
-
+          
+          double dist_inc = 0.5;
+          for (int i = 0; i < 50; ++i) {
+            double next_s = cars_s + (i +1) * dist_inc;
+            double next_d = 6; // lane with = 4m --> 1.5*4 = 6
+            vector<double> xy = getXY(next_s, next_d, map_waypoints_s, map_waypoints_x, map_waypoints_s);
+            next_x_vals.push_back(xy[0]);
+            next_y_vals.push_back([1]);
+          }
+          // END-TODO
 
           msgJson["next_x"] = next_x_vals;
           msgJson["next_y"] = next_y_vals;
