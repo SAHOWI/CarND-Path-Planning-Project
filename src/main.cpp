@@ -55,7 +55,8 @@ int main() {
 
   // BEGIN
   int lane = 1; // MIDDLE LANE
-  double ref_vel = 49.5; // MHP 
+  // double ref_vel = 49.5; // MHP 
+  double ref_vel = 0;
   // END
 
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
