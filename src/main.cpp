@@ -31,7 +31,10 @@ int main() {
   // double ref_vel = 49.5; // MHP 
   double ref_vel = 0;
 
-
+  if (lane == 1) { 
+    //
+    bool SUCCESS = true;
+  }
 
   // Waypoint map to read from
   string map_file_ = "../data/highway_map.csv";
@@ -117,7 +120,7 @@ int main() {
           for (int i = 0; i < sensor_fusion.size(); i++) {
             float d = sensor_fusion[i][6];
             // is there a car in front of us?
-            if ( d < (2+4*lane+2) && d > (2+4*lane-2)) {
+            if ( d < (2 + 4*lane + 2) && d > (2 + 4*lane - 2)) {
               double vx = sensor_fusion[i][3];
               double vy = sensor_fusion[i][4];
               double check_speed = sqrt(vx*vx+vy*vy);
