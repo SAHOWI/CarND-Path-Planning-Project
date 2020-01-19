@@ -94,27 +94,47 @@ int main() {
 
           // Sensor Fusion Data, a list of all other cars on the same side 
           //   of the road.
-          // auto sensor_fusion = j[1]["sensor_fusion"];
-          vector<vector<vector<double>> sensor_fusion = j[1]["sensor_fusion"];
+          auto sensor_fusion = j[1]["sensor_fusion"];
+          //vector<vector<vector<double>> sensor_fusion = j[1]["sensor_fusion"];
 
           int prev_size = previous_path_x.size();
           
           // 
           //  begin: collision detection
           //
-          /if (prev_size > 0)
+          if (prev_size > 0)
           {
              car_s = end_path_s;
           }
 
-          
+
           bool too_close = false;
 
           for (int i = 0; i < sensor_fusion.size(); i++) {
             float d = sensor_fusion[i][6];
-            // if ( d < ) 
+            // is there a car in front of us?
+            if ( d < (2+4*lane+2) && d > (2+4*lane-2)) {
+              double vx = sensor_fusion[i][3];
+              double vy = sensor_fusion[i][4];
+              double check_speed = sqrt(vx*vx+vy*vy);
+              double check_car_s = sensor_fusion[i][5];
+
+              check_car_s +=((double) prev_size* 0.02 * check_speed); 
+              
+              // is the car in front closer than 30m ?
+              if ((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
+                  too_close = true;
+              } 
+            } 
           }
 
+          // the next IF block covers the JERK issue at the beginning AND decreases and (re-) increases the speed again up to 49.5 MPH!
+          if ( too_close) {
+            ref_vel -= 0.224; // decrease the speed
+
+          } else if (ref_vel < 49.5) {
+            ref_vel += 0.224; // increase the speed
+          }
 
 
           // end: collision detection
