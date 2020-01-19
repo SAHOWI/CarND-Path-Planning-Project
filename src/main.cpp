@@ -94,9 +94,30 @@ int main() {
 
           // Sensor Fusion Data, a list of all other cars on the same side 
           //   of the road.
-          auto sensor_fusion = j[1]["sensor_fusion"];
+          // auto sensor_fusion = j[1]["sensor_fusion"];
+          vector<vector<vector<double>> sensor_fusion = j[1]["sensor_fusion"];
+
+          int prev_size = previous_path_x.size();
           
-          int prev_size previous_path_x.size();
+          // 
+          //  begin: collision detection
+          //
+          // if (prev_size > 0)
+          // {
+          //  car_s = end_path_s;
+          //}
+
+          bool too_close = false;
+
+          for (int i = 0; i < sensor_fusion.size(); i++) {
+            float d = sensor_fusion[i][6];
+            // if ( d < ) 
+          }
+
+
+
+          // end: collision detection
+
           json msgJson;
 
           vector<double> next_x_vals;
@@ -185,7 +206,7 @@ int main() {
           // calculate how to break-up the spline points
 
           double target_x = 30.0;
-          double target_y = s(target_x);
+          double target_y = s(target_x); // calling the spline function to get target_y to as given target_x
           double target_dist = sqrt((target_x) * (target_x) * (target_y) * (target_y);
 
           double x_add_on = 0;
