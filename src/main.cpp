@@ -26,6 +26,13 @@ int main() {
   vector<double> map_waypoints_dx;
   vector<double> map_waypoints_dy;
 
+    // BEGIN
+  int lane = 1; // MIDDLE LANE
+  // double ref_vel = 49.5; // MHP 
+  double ref_vel = 0;
+
+
+
   // Waypoint map to read from
   string map_file_ = "../data/highway_map.csv";
   // The max s value before wrapping around the track back to 0
@@ -53,10 +60,6 @@ int main() {
     map_waypoints_dy.push_back(d_y);
   }
 
-  // BEGIN
-  int lane = 1; // MIDDLE LANE
-  // double ref_vel = 49.5; // MHP 
-  double ref_vel = 0;
   // END
 
   h.onMessage([&map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
