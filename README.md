@@ -19,10 +19,12 @@ The highway's waypoints loop around so the frenet s value, distance along the ro
 
 ## Basic Build Instructions
 
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./path_planning`.
+1. Clone the repo
+2. from with the Repo execute `./install-ubuntu.sh`
+3. Make a build directory: `mkdir build && cd build`
+4. Build the CMAKE files: `cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..` 
+5. Compile: `make`
+5. Run it: `./path_planning`.
 
 Here is the data provided from the Simulator to the C++ Program
 
